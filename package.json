@@ -4,7 +4,6 @@
   "description": "Ready to use starter point for developing NPM packages with modern and agile tools.",
   "main": "index.js",
   "scripts": {
-    "commit": "git-cz",
     "semantic-release": "semantic-release",
     "test": "echo \"Error: no test specified\" && exit 0",
     "travis-deploy-once": "travis-deploy-once"
@@ -22,12 +21,19 @@
   "homepage": "https://github.com/matteobad/npm-package-boilerplate#readme",
   "dependencies": {},
   "devDependencies": {
+    "commitizen": "^3.1.1",
     "cz-conventional-changelog": "^2.1.0",
+    "husky": "^2.1.0",
     "semantic-release": "^15.13.3"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook"
     }
   }
 }
