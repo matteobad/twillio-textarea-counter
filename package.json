@@ -1,0 +1,33 @@
+{
+  "name": "npm-package-boilerplate",
+  "version": "0.0.0-semantically-released",
+  "description": "Ready to use starter point for developing NPM packages with modern and agile tools.",
+  "main": "index.js",
+  "scripts": {
+    "commit": "git-cz",
+    "semantic-release": "semantic-release",
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "travis-deploy-once": "travis-deploy-once"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/matteobad/npm-package-boilerplate.git"
+  },
+  "keywords": [],
+  "author": "Matteo Badini",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matteobad/npm-package-boilerplate/issues"
+  },
+  "homepage": "https://github.com/matteobad/npm-package-boilerplate#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "cz-conventional-changelog": "^2.1.0",
+    "semantic-release": "^15.13.3"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
