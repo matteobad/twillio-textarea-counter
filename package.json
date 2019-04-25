@@ -1,6 +1,6 @@
 {
   "name": "npm-package-boilerplate",
-  "version": "0.0.0-semantically-released",
+  "version": "1.0.0",
   "description": "Ready to use starter point for developing NPM packages with modern and agile tools.",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
