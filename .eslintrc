@@ -1,7 +1,0 @@
-{
-	"extends": ["eslint:recommended", "standard"],
-  	"rules": {
-		"indent": ["error", "tab"],
-		"no-tabs": "off"
-  	}
-}
