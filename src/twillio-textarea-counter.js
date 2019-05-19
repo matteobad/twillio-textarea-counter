@@ -1,6 +1,6 @@
 import {countCharacters} from './utils';
 
-const tagName = 'vanilla-textarea-counter';
+const tagName = 'twillio-textarea-counter';
 const template = document.createElement('template');
 template.innerHTML = `
   <style>
@@ -29,15 +29,15 @@ template.innerHTML = `
 `;
 
 /**
- * Vanilla Textarea Counter Class
+ * Twillio Textarea Counter Class
  *
- * @class VanillaTextareaCounter
+ * @class TwillioTextareaCounter
  * @extends {HTMLElement}
  */
-class VanillaTextareaCounter extends HTMLElement {
+class TwillioTextareaCounter extends HTMLElement {
   /**
-   *Creates an instance of VanillaTextareaCounter.
-   * @memberof VanillaTextareaCounter
+   *Creates an instance of TwillioTextareaCounter.
+   * @memberof TwillioTextareaCounter
    */
   constructor() {
     super();
@@ -48,7 +48,7 @@ class VanillaTextareaCounter extends HTMLElement {
   /**
    * Setter for [encoding]
    *
-   * @memberof VanillaTextareaCounter
+   * @memberof TwillioTextareaCounter
    * @param {String} value
    */
   set encoding(value) {
@@ -59,7 +59,7 @@ class VanillaTextareaCounter extends HTMLElement {
    * Getter for [encoding]
    *
    * @readonly
-   * @memberof VanillaTextareaCounter
+   * @memberof TwillioTextareaCounter
    * @return {String} encoding
    */
   get encoding() {
@@ -69,7 +69,7 @@ class VanillaTextareaCounter extends HTMLElement {
   /**
    * Setter for [limit]
    *
-   * @memberof VanillaTextareaCounter
+   * @memberof TwillioTextareaCounter
    * @param {String} value
    */
   set limit(value) {
@@ -81,7 +81,7 @@ class VanillaTextareaCounter extends HTMLElement {
    * Getter for [limit]
    *
    * @readonly
-   * @memberof VanillaTextareaCounter
+   * @memberof TwillioTextareaCounter
    * @return {Number} limit
    */
   get limit() {
@@ -93,7 +93,7 @@ class VanillaTextareaCounter extends HTMLElement {
    * including the first time it is upgraded.
    * It's an opportune moment to set up shadow children and attributes.
    *
-   * @memberof VanillaTextareaCounter
+   * @memberof TwillioTextareaCounter
    */
   connectedCallback() {
     // Initialize properties that depend on light DOM
@@ -121,7 +121,7 @@ class VanillaTextareaCounter extends HTMLElement {
   /**
    * dicsonnectedCallback is fired prior to DOM removal.
    *
-   * @memberof VanillaTextareaCounter
+   * @memberof TwillioTextareaCounter
    */
   disconnectedCallback() {
     this.shadowTextarea.removeEventListener('keyup', this._onKeyUp, true);
@@ -132,7 +132,7 @@ class VanillaTextareaCounter extends HTMLElement {
    *
    * @readonly
    * @static
-   * @memberof VanillaTextareaCounter
+   * @memberof TwillioTextareaCounter
    */
   static get observedAttributes() {
     return ['encoding', 'limit'];
@@ -144,7 +144,7 @@ class VanillaTextareaCounter extends HTMLElement {
    * @param {String} name
    * @param {*} oldValue
    * @param {*} newValue
-   * @memberof VanillaTextareaCounter
+   * @memberof TwillioTextareaCounter
    */
   attributeChangedCallback(name, oldValue, newValue) {
     if (oldValue !== newValue) {
@@ -156,7 +156,7 @@ class VanillaTextareaCounter extends HTMLElement {
    *
    *
    * @param {*} e
-   * @memberof VanillaTextareaCounter
+   * @memberof TwillioTextareaCounter
    */
   _updateCounter(e) {
     console.log(e, this.shadowTextarea);
@@ -181,6 +181,6 @@ class VanillaTextareaCounter extends HTMLElement {
   }
 }
 
-// This tells the browser that the <vanilla-textarea-counter>
-const register = () => customElements.define(tagName, VanillaTextareaCounter);
+// This tells the browser that the <twillio-textarea-counter>
+const register = () => customElements.define(tagName, TwillioTextareaCounter);
 window.WebComponents ? window.WebComponents.waitFor(register) : register();

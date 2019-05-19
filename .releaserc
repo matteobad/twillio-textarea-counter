@@ -8,5 +8,5 @@
     "@semantic-release/changelog",
     "@semantic-release/git"
   ],
-  "repositoryUrl": "https://github.com/matteobad/npm-package-boilerplate.git"
+  "repositoryUrl": "https://github.com/matteobad/twillio-textarea-counter.git"
 }

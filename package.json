@@ -1,9 +1,9 @@
 {
-  "name": "vanilla-textarea-counter",
+  "name": "twillio-textarea-counter",
   "version": "0.0.0",
   "description": "",
-  "main": "dist/vanilla-textarea-counter.js",
-  "module": "dist/vanilla-textarea-counter.mjs",
+  "main": "dist/twillio-textarea-counter.js",
+  "module": "dist/twillio-textarea-counter.mjs",
   "scripts": {
     "commit": "git-cz",
     "clean": "rimraf dist",
@@ -20,9 +20,9 @@
   "keywords": [],
   "author": "Matteo Badini <matteo.badini95@gmail.com>",
   "license": "MIT",
-  "bugs": "https://github.com/matteobad/vanilla-textarea-counter/issues",
-  "homepage": "https://github.com/matteobad/vanilla-textarea-counter#readme",
-  "repository": "https://github.com/matteobad/vanilla-textarea-counter.git",
+  "bugs": "https://github.com/matteobad/twillio-textarea-counter/issues",
+  "homepage": "https://github.com/matteobad/twillio-textarea-counter#readme",
+  "repository": "https://github.com/matteobad/twillio-textarea-counter.git",
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.4.4",
