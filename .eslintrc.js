@@ -1,10 +1,9 @@
 module.exports = {
     "env": {
         "browser": true,
-        "es6": true,
-        "node": true
+        "es6": true
     },
-    "extends": "standard",
+    "extends": "google",
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
@@ -14,6 +13,5 @@ module.exports = {
         "sourceType": "module"
     },
     "rules": {
-		"indent": ["error", 4]
     }
 };

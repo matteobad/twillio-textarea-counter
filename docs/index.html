@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vanilla textarea counter</title>
+    <meta name="description" content="Make your first custom element with Glitch!">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/style.css">
+
+    <!-- Load the polyfill so that this works in browsers that don't yet have Custom Elements -->
+    <script src="https://unpkg.com/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+
+    <!-- Load the custom element definition -->
+    <script src="../dist/vanilla-textarea-counter.mjs" type="module"></script>
+  </head>
+  <body>
+    <header>
+      <h1>
+        A <span class="pink">&lt;vanilla-textarea-counter&gt;</span> with plain JavaScript
+      </h1>
+    </header>
+
+    <main>
+      <p>
+        This is a custom element that with a textare and a characters count!
+      </p>
+      <vanilla-textarea-counter encoding="UCS-2">
+        <span slot="counter-label">Twillio counter</span>
+      </vanilla-textarea-counter>
+    </main>
+
+</body>
+</html>
