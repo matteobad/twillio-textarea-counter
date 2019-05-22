@@ -60,10 +60,8 @@ export const encodingLimits = {
   'UCS-2': {single: 70, multi: 67},
 };
 
-export const gsm7Chars = standardLatinChars.join() + numbersChars.join() +
-  punctuationChars.join() + currencyChars.join() + accentedChars.join() +
-  greekChars.join() + miscellaneousChars.join();
-export const gsm7CharsRegex = new RegExp(gsm7Chars);
+export const gsm7Chars = standardLatinChars.join('') + numbersChars.join('') +
+  punctuationChars.join('') + currencyChars.join('') + accentedChars.join('') +
+  greekChars.join('') + miscellaneousChars.join('');
 
 export const gsm7ExtendedChars = extended;
-export const gsm7ExtendedCharsRegex = new RegExp(gsm7ExtendedChars);
