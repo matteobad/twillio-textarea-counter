@@ -4,7 +4,7 @@ const external = Object.keys(pkg.dependencies);
 const plugins = [];
 
 export default {
-  input: './src/vanilla-textarea-counter.js',
+  input: './src/twillio-textarea-counter.js',
   output: [
     {
       name: pkg.name,
