@@ -50,18 +50,19 @@ const miscellaneousChars = [
 ];
 
 // GSM-7 extended char set
-const extended = '|^€{}[]\\~';
-
-// const gsm7ExtraChars = '\\^{}\\\\\\[~\\]|€';
-// const gsm7ExtendedRegex = RegExp('^[\\' + gsm7ExtendedChars + ']*$');
+const extended = [
+  '|', '^', '€', '{', '}', '[', ']', '\\', '~',
+];
 
 export const encodingLimits = {
   'GSM-7': {single: 160, multi: 153},
   'UCS-2': {single: 70, multi: 67},
 };
 
-export const gsm7Chars = standardLatinChars.join('') + numbersChars.join('') +
-  punctuationChars.join('') + currencyChars.join('') + accentedChars.join('') +
-  greekChars.join('') + miscellaneousChars.join('');
+// eslint-disable-next-line max-len
+export const gsm7Chars = standardLatinChars.join('') + numbersChars.join('') + punctuationChars.join('') + currencyChars.join('') + accentedChars.join('') + greekChars.join('') + miscellaneousChars.join('');
+// eslint-disable-next-line max-len
+export const gsm7CharsRegex = RegExp('^[A-Za-z0-9 \\r\\n@£$¥èéùìòÇØøÅå\u001B\u00A4\u0394_\u03A6\u0393\u039B\u03A9\u03A0\u03A8\u03A3\u0398\u039EÆæßÉ!<>\"#$%&amp;\'()*+,\-./:;&lt;=&gt;?¡ÄÖÑÜ§¿äöñüà^{}\\\\\\[~\\]|\u20AC]*$');
 
-export const gsm7ExtendedChars = extended;
+export const gsm7ExtendedChars = extended.join('');
+export const gsm7ExtendedCharsRegex = RegExp('[|^{}[~\]\\\u20AC]', 'gm');
