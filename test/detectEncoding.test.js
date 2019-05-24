@@ -10,6 +10,10 @@ describe('Standard GSM-7 character set tests', () => {
     expect(gsm7Chars.length).toBe(128);
   });
 
+  test('Sentence with standard chars should be GSM-7 encoded.', () => {
+    expect(detectEncoding('Standard sentence!')).toBe(GSM7);
+  });
+
   [...gsm7Chars].forEach((c) => {
     test(`Character: ${c} should be GSM-7`, () => {
       expect(detectEncoding(c)).toBe(GSM7);
@@ -28,11 +32,19 @@ describe('Extended GSM-7 character set tests', () => {
       expect(detectEncoding(c)).toBe(GSM7);
     });
   });
+
+  test('Sentence with exteded chars should be GSM-7 encoded.', () => {
+    expect(detectEncoding('Extended sentence!')).toBe(GSM7);
+  });
 });
 
 // Tests against non GSM-7 Extended chars
 describe('Unicode character tests', () => {
   test('Character: È should be USC-2.', () => {
     expect(detectEncoding('È')).toBe(UCS2);
+  });
+
+  test('Sentence with unicode chars should be UCS-2 encoded.', () => {
+    expect(detectEncoding('Unicode sentencē.')).toBe(UCS2);
   });
 });
