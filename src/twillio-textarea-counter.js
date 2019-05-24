@@ -1,4 +1,5 @@
-import {countCharacters} from './utils';
+import countCharacters from './countCharacters';
+import detectEncoding from './detectEncoding';
 
 const tagName = 'twillio-textarea-counter';
 const template = document.createElement('template');
@@ -175,8 +176,17 @@ class TwillioTextareaCounter extends HTMLElement {
      */
 
     if (this.shadowTextarea) {
-      const count = countCharacters(this.shadowTextarea.value, 'GSM-7');
+      const str = this.shadowTextarea.value;
+      const encoding = detectEncoding(str);
+      const count = countCharacters(str, encoding);
+
+      if (encoding !== this.encoding) {
+        this.encoding = encoding;
+        this.limit = (encoding === 'UCS-2') ? 70 : 160;
+      }
+
       this.counterValue.textContent = count;
+      this.counterTotal.textContent = this.limit;
     }
   }
 }
