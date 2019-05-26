@@ -1,6 +1,6 @@
 {
   "name": "twillio-textarea-counter",
-  "version": "0.0.0",
+  "version": "1.2.0",
   "description": "",
   "main": "dist/twillio-textarea-counter.js",
   "module": "dist/twillio-textarea-counter.mjs",
