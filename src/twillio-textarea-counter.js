@@ -16,73 +16,89 @@ template.innerHTML = `
     width: 100%;
     text-align: right;
   }
+  .counter-encoding {
+    float: left;
+  }
   </style>
 
-  <label for="textField">
+  <label for="textareaField">
     <slot name="counter-label"></slot>
   </label>
-  <textarea id="textField"></textarea>
+  <textarea id="textareaField" rows="10"></textarea>
   <div id="counter" class="counter">
-    <span id="counter__value">0</span>
-    <span id="counter__separator">/</span>
-    <span id="counter__total">180</span>
+    <span class="counter-encoding" aria-label="Encoding">GSM-7</span>
+    <span class="counter-value" aria-label="Message length">0</span>
+    <span class="counter-separator" aria-hidden="true">/</span>
+    <span class="counter-total" aria-hidden="true">160</span>
   </div>
 `;
 
 /**
  * Twillio Textarea Counter Class
- *
  * @class TwillioTextareaCounter
  * @extends {HTMLElement}
  */
 class TwillioTextareaCounter extends HTMLElement {
   /**
-   *Creates an instance of TwillioTextareaCounter.
-   * @memberof TwillioTextareaCounter
+   * Constructor, initialize properties
    */
   constructor() {
     super();
     this.encoding = 'GSM-7';
+    this.count = 0;
     this.limit = 160;
   }
 
   /**
-   * Setter for [encoding]
-   *
-   * @memberof TwillioTextareaCounter
+   * Setter for encoding
    * @param {String} value
    */
   set encoding(value) {
     this.setAttribute('encoding', value);
+    if (this.counterEncoding) this.counterEncoding.textContent = value;
   }
 
   /**
-   * Getter for [encoding]
-   *
+   * Getter for encoding
    * @readonly
-   * @memberof TwillioTextareaCounter
-   * @return {String} encoding
+   * @return {String}
    */
   get encoding() {
     return this.getAttribute('encoding');
   }
 
   /**
-   * Setter for [limit]
-   *
-   * @memberof TwillioTextareaCounter
+   * Setter for count
+   * @param {String} value
+   */
+  set count(value) {
+    if (typeof value !== 'number' || value < 0) return;
+    this.setAttribute('count', value);
+    if (this.counterValue) this.counterValue.textContent = value;
+  }
+
+  /**
+   * Getter for count
+   * @readonly
+   * @return {Number}
+   */
+  get count() {
+    return this.getAttribute('count');
+  }
+
+  /**
+   * Setter for limit
    * @param {String} value
    */
   set limit(value) {
     if (typeof value !== 'number' || value < 0) return;
     this.setAttribute('limit', value);
+    if (this.counterTotal) this.counterTotal.textContent = value;
   }
 
   /**
-   * Getter for [limit]
-   *
+   * Getter for limit
    * @readonly
-   * @memberof TwillioTextareaCounter
    * @return {Number} limit
    */
   get limit() {
@@ -90,11 +106,9 @@ class TwillioTextareaCounter extends HTMLElement {
   }
 
   /**
-   * connectedCallback is fired every time your element connects to the DOM,
+   * Callback that is fired every time your element connects to the DOM,
    * including the first time it is upgraded.
    * It's an opportune moment to set up shadow children and attributes.
-   *
-   * @memberof TwillioTextareaCounter
    */
   connectedCallback() {
     // Initialize properties that depend on light DOM
@@ -105,24 +119,19 @@ class TwillioTextareaCounter extends HTMLElement {
     if (!this.shadowRoot) {
       this.attachShadow({mode: 'open'});
       this.shadowRoot.appendChild(template.content.cloneNode(true));
-      this.shadowTextarea = this.shadowRoot.getElementById('textField');
-      this.counterValue = this.shadowRoot.getElementById('counter__value');
-      this.counterTotal = this.shadowRoot.getElementById('counter__total');
+      this.shadowTextarea = this.shadowRoot.getElementById('textareaField');
+      this.counterEncoding = this.shadowRoot.querySelector('.counter-encoding');
+      this.counterValue = this.shadowRoot.querySelector('.counter-value');
+      this.counterTotal = this.shadowRoot.querySelector('.counter-total');
     }
 
     // Add listeners
     this._onKeyUp = this._updateCounter.bind(this);
     this.shadowTextarea.addEventListener('keyup', this._onKeyUp, true);
-
-    // Setup the counter.
-    this.counterValue.textContent = 0;
-    this.counterTotal.textContent = this.limit;
   }
 
   /**
-   * dicsonnectedCallback is fired prior to DOM removal.
-   *
-   * @memberof TwillioTextareaCounter
+   * Callback that is fired prior to DOM removal.
    */
   disconnectedCallback() {
     this.shadowTextarea.removeEventListener('keyup', this._onKeyUp, true);
@@ -130,10 +139,8 @@ class TwillioTextareaCounter extends HTMLElement {
 
   /**
    * Observed attributes that will trigger the callback.
-   *
    * @readonly
    * @static
-   * @memberof TwillioTextareaCounter
    */
   static get observedAttributes() {
     return ['encoding', 'limit'];
@@ -141,7 +148,6 @@ class TwillioTextareaCounter extends HTMLElement {
 
   /**
    * Will run whenever any of observed attributes change.
-   *
    * @param {String} name
    * @param {*} oldValue
    * @param {*} newValue
@@ -157,7 +163,6 @@ class TwillioTextareaCounter extends HTMLElement {
    *
    *
    * @param {*} e
-   * @memberof TwillioTextareaCounter
    */
   _updateCounter(e) {
     console.log(e, this.shadowTextarea);
@@ -177,16 +182,12 @@ class TwillioTextareaCounter extends HTMLElement {
 
     if (this.shadowTextarea) {
       const str = this.shadowTextarea.value;
-      const encoding = detectEncoding(str);
-      const count = countCharacters(str, encoding);
+      this.encoding = detectEncoding(str);
+      this.count = countCharacters(str, this.encoding);
+      this.limit = (this.encoding === 'UCS-2') ? 70 : 160;
 
-      if (encoding !== this.encoding) {
-        this.encoding = encoding;
-        this.limit = (encoding === 'UCS-2') ? 70 : 160;
-      }
-
-      this.counterValue.textContent = count;
-      this.counterTotal.textContent = this.limit;
+      // this.counterValue.textContent = count;
+      // this.counterTotal.textContent = this.limit;
     }
   }
 }
