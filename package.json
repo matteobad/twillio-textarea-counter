@@ -45,7 +45,7 @@
     "npm-check": "^5.9.0",
     "rimraf": "^2.6.3",
     "rollup": "^1.12.3",
-    "semantic-release": "^15.13.12"
+    "semantic-release": "^17.2.3"
   },
   "config": {
     "commitizen": {
